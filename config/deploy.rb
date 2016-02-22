@@ -13,14 +13,12 @@ set :linked_files, fetch(:linked_files, []).push('config/secrets.yml')
 set :keep_releases, 3
 set :pty, true
 
-namespace :deploy do
+after :deploy, 'deploy:restart'
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      on roles(:app), in: :sequence, wait: 1 do
-        execute :sudo, "service apache2 restart"
-      end
+namespace :deploy do
+  task :restart do
+    on roles(:web) do
+      execute :sudo, "service apache2 restart"
     end
   end
-
 end
