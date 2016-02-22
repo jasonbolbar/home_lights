@@ -13,6 +13,7 @@ set :linked_files, fetch(:linked_files, []).push('config/secrets.yml')
 set :keep_releases, 3
 set :pty, true
 
+before 'deploy:compile_assets', 'bower:install'
 after :deploy, 'deploy:restart'
 
 namespace :deploy do
