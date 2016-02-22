@@ -25,6 +25,8 @@ gem 'bower-rails', '~> 0.10.0'
 
 gem 'haml'
 
+gem 'sqlite3'
+
 
 # Use Capistrano for deployment
 group :development do
