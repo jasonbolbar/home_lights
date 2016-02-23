@@ -8,12 +8,12 @@ class Switch < ActiveRecord::Base
 
   def turn_on
     pin_high
-    update_column(:status,true)
+    update_column(:status,true) if persisted?
   end
 
   def turn_off
     pin_low
-    update_column(:status,false)
+    update_column(:status,false) if persisted?
   end
 
   def on?
