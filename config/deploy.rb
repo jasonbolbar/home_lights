@@ -9,7 +9,7 @@ set :bundle_path, nil
 set :bundle_binstubs, nil
 set :bundle_flags, '--system'
 set :log_level, :info
-set :linked_files, fetch(:linked_files, []).push('config/secrets.yml')
+set :linked_files, fetch(:linked_files, []) << %w(config/secrets.yml config/database.yml)
 set :keep_releases, 3
 set :pty, true
 
