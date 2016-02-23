@@ -7,7 +7,7 @@ module GPIO
       raise GPIO::PinNotFoundError unless pin_exists?
       execute_command "gpio -g write #{pin_number} 1"
       unless time.nil?
-        raise GPIO::InvalidTimeError unless time.is_a?(Fixnum) && time >= 100
+        raise GPIO::InvalidTimeError unless time.is_a?(Float) && time >= 0.1
         sleep time
         pin_low
       end

@@ -8,9 +8,9 @@ class Switch < ActiveRecord::Base
 
   validates :pin_number, uniqueness: true, inclusion: GPIO::Api::VALID_PINS, presence: true
   validates :name, presence: true
-  validates :time, numericality: {only_integer: true, greater_than: 100, allow_blank: true}
+  validates :time, numericality: {greater_than_or_equal_to: 0.1 ,allow_blank: true, less_than_or_equal_to: 1.0}
 
-  before_save :define_time
+  before_validation :define_time
 
   def turn_on
     pin_high
@@ -31,8 +31,8 @@ class Switch < ActiveRecord::Base
     pin_high(time)
   end
 
-  def self.available_switches
-    VALID_PINS - pluck(:pin_number)
+  def self.available_switches(pin)
+    VALID_PINS - where('pin_number != ?',pin).pluck(:pin_number)
   end
 
   private
@@ -40,7 +40,7 @@ class Switch < ActiveRecord::Base
   def define_time
     case switch_type.downcase.to_sym
       when :button
-        self.time = 100
+        self.time = 0.1
       else
         self.time = nil
     end

@@ -7,7 +7,7 @@ ActiveAdmin.register Switch do
   form do |f|
     inputs 'Add Switch' do
       f.input :name
-      f.input :pin_number, as: :select, collection: Switch.available_switches, include_blank: false
+      f.input :pin_number, as: :select, collection: Switch.available_switches(f.object.pin_number), include_blank: false
       f.input :switch_type, as: :select, collection: Switch::SWITCH_TYPES, include_blank: false
     end
     f.actions
@@ -48,6 +48,7 @@ ActiveAdmin.register Switch do
 
   member_action :activate_button, method: :post do
     resource.press_button
+    render js:'console.log("Button pressed");'
   end
 
 end

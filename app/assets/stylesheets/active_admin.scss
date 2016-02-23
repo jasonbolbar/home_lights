@@ -8,11 +8,11 @@
 // $sidebar-width: 242px;
 
 // Active Admin's got SASS!
-@import "active_admin/mixins";
-@import "active_admin/base";
 @import "bootstrap/dist/css/bootstrap.min";
 @import "bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min";
 @import "switches";
+@import "active_admin/mixins";
+@import "active_admin/base";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
@@ -21,4 +21,18 @@
 .btn-primary{
   color: #fff !important;
   text-decoration: none !important;
+}
+
+.label{
+  display: block;
+  width: 10%;
+  float: left;
+  font-size: 1.0em;
+  font-weight: bold;
+  color: #5E6469;
+}
+
+.breadcrumb{
+  padding: 0px 0px;
+  background: none;
 }
