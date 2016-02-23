@@ -27,6 +27,8 @@ gem 'haml'
 
 gem 'sqlite3'
 
+gem 'activeadmin', '~> 1.0.0.pre2'
+
 
 # Use Capistrano for deployment
 group :development do
